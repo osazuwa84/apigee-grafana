@@ -1,0 +1,105 @@
+{
+  "dashboard": {
+    "title": "Apigee Cassandra Monitoring",
+    "panels": [
+      {
+        "title": "Apigee Cassandra Client READ Request Rate",
+        "type": "graph",
+        "datasource": "Google Cloud Monitoring",
+        "targets": [
+          {
+            "refId": "A",
+            "query": "fetch consumer_dest_project::apigee.googleapis.com/cassandra/clientrequest_latency",
+            "metricType": "apigee.googleapis.com/cassandra/clientrequest_latency",
+            "aliasBy": "{{metric.scope}}",
+            "view": "REDUCE_SUM",
+            "crossSeriesReducer": "REDUCE_SUM",
+            "groupBys": ["metric.scope", "metric.unit"],
+            "filter": "metric.label.scope=\"Read\" AND metric.label.unit=\"OneMinuteRate\""
+          }
+        ]
+      },
+      {
+        "title": "Apigee Cassandra Client WRITE Request Rate",
+        "type": "graph",
+        "datasource": "Google Cloud Monitoring",
+        "targets": [
+          {
+            "refId": "A",
+            "query": "fetch consumer_dest_project::apigee.googleapis.com/cassandra/clientrequest_latency",
+            "metricType": "apigee.googleapis.com/cassandra/clientrequest_latency",
+            "aliasBy": "{{metric.scope}}",
+            "view": "REDUCE_NONE",
+            "crossSeriesReducer": "REDUCE_NONE",
+            "groupBys": ["metric.scope", "metric.unit"],
+            "filter": "metric.label.scope=\"Write\" AND metric.label.unit=\"OneMinuteRate\""
+          }
+        ]
+      },
+      {
+        "title": "Apigee Cassandra Read Request Latency",
+        "type": "graph",
+        "datasource": "Google Cloud Monitoring",
+        "targets": [
+          {
+            "refId": "A",
+            "query": "fetch consumer_dest_project::apigee.googleapis.com/cassandra/clientrequest_latency",
+            "metricType": "apigee.googleapis.com/cassandra/clientrequest_latency",
+            "aliasBy": "{{metric.scope}}",
+            "view": "REDUCE_PERCENTILE_99",
+            "crossSeriesReducer": "REDUCE_PERCENTILE_99",
+            "groupBys": ["metric.scope"],
+            "filter": "metric.label.scope=\"Read\""
+          },
+          {
+            "refId": "B",
+            "query": "fetch consumer_dest_project::apigee.googleapis.com/cassandra/clientrequest_latency",
+            "metricType": "apigee.googleapis.com/cassandra/clientrequest_latency",
+            "aliasBy": "{{metric.scope}}",
+            "view": "REDUCE_PERCENTILE_95",
+            "crossSeriesReducer": "REDUCE_PERCENTILE_95",
+            "groupBys": ["metric.scope"],
+            "filter": "metric.label.scope=\"Read\""
+          },
+          {
+            "refId": "C",
+            "query": "fetch consumer_dest_project::apigee.googleapis.com/cassandra/clientrequest_latency",
+            "metricType": "apigee.googleapis.com/cassandra/clientrequest_latency",
+            "aliasBy": "{{metric.scope}}",
+            "view": "REDUCE_PERCENTILE_50",
+            "crossSeriesReducer": "REDUCE_PERCENTILE_50",
+            "groupBys": ["metric.scope"],
+            "filter": "metric.label.scope=\"Read\""
+          }
+        ]
+      },
+      {
+        "title": "Apigee Cassandra Write Request Latency",
+        "type": "graph",
+        "datasource": "Google Cloud Monitoring",
+        "targets": [
+          {
+            "refId": "A",
+            "query": "fetch consumer_dest_project::apigee.googleapis.com/cassandra/clientrequest_latency",
+            "metricType": "apigee.googleapis.com/cassandra/clientrequest_latency",
+            "aliasBy": "{{metric.scope}}",
+            "view": "REDUCE_PERCENTILE_99",
+            "crossSeriesReducer": "REDUCE_PERCENTILE_99",
+            "groupBys": ["metric.scope"],
+            "filter": "metric.label.scope=\"Write\""
+          },
+          {
+            "refId": "B",
+            "query": "fetch consumer_dest_project::apigee.googleapis.com/cassandra/clientrequest_latency",
+            "metricType": "apigee.googleapis.com/cassandra/clientrequest_latency",
+            "aliasBy": "{{metric.scope}}",
+            "view": "REDUCE_PERCENTILE_95",
+            "crossSeriesReducer": "REDUCE_PERCENTILE_95",
+            "groupBys": ["metric.scope"],
+            "filter": "metric.label.scope=\"Write\""
+          },
+          {
+            "refId": "C",
+            "query": "fetch consumer_dest_project::apigee.googleapis.com/cassandra/clientrequest_latency",
+            "metricType": "apigee.googleapis.com
+
